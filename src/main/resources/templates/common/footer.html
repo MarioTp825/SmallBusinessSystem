@@ -63,7 +63,7 @@
     <!-- Copyright -->
     <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
         © 2021 Copyright:
-        <a class="text-dark" href="https://mdbootstrap.com/">dominio.com</a>
+        <a class="text-dark" href="https://mdbootstrap.com/" th:text="${#httpServletRequest.serverName}"/>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
             integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
