@@ -3,14 +3,18 @@ package edu.uni.website
 import com.google.gson.Gson
 import edu.uni.website.interfaces.DataBaseConnector
 import edu.uni.website.models.MailSchema
+import io.grpc.netty.shaded.io.netty.handler.codec.http.HttpHeaders.getHeader
+import io.netty.handler.codec.http.HttpHeaders.getHeader
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.ui.set
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder
+import javax.servlet.http.HttpServletRequest
+
 
 @Controller
 class WebController {

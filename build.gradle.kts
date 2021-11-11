@@ -40,3 +40,11 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Test> {
     useJUnitPlatform()
 }
+
+tasks.getByName<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
+    mainClass.set("edu.uni.website.WebsiteApplicationKt")
+}
+
+tasks.getByName<Jar>("jar") {
+    classifier = ""
+}
