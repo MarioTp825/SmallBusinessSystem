@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
+    <style>
+        .carousel-inner {
+            width: 100%;
+            max-height: 600px;
+            object-fit: contain;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <section th:replace="common/nav::navfragment"></section>
+
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="data:image/jpeg;base64,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"
+                     class="d-block w-100" alt="img">
+            </div>
+            <div class="carousel-item">
+                <img src="https://mcd.gob.gt/wp-content/uploads/2015/07/servicio-gratuito-de-odontolog%C3%ADa-en-parque-%E2%80%9CErick-Barrondo%E2%80%9D.jpg"
+                     class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="https://odontologia.ufm.edu/wp-content/uploads/little-boy-patient-dentist.jpg"
+                     class="d-block w-100" alt="img">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col-12 ">
+            <div class="jumbotron" id="history">
+                <h1 class="display-4">¿Quién Soy?</h1>
+                <p class="lead">Mi nombre es Luis Fernando, tengo 23 años y me encuentro resién egresado de la
+                    Universidad
+                    San Carlos de Guatemala..</p>
+                <a data-bs-toggle="collapse" href="#generalHistory" aria-expanded="false" aria-controls="generalHistory"
+                   role="button">Leer más</a>
+                <div class="collapse" id="generalHistory">
+                    <div class="card card-body">
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-5 offset-sm-1">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus dolorem, earum
+                                exercitationem fugit nulla repudiandae suscipit vitae voluptas. Aspernatur iure quos sit
+                                suscipit totam! Eligendi illum mollitia omnis optio voluptatibus! Accusantium, assumenda
+                                corporis debitis dolores eligendi id, iure maiores molestiae nobis
+                                nostrum pariatur perspiciatis quae quasi qui rem reprehenderit saepe sed tempore unde
+                                vero!
+                                Ad incidunt ipsum sapiente tempore voluptatibus.
+                            </div>
+                            <div class="col-sm-12 col-lg-5 offset-sm-1">
+                                <section th:replace="common/instagrampic::instafragment"></section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-4">
+            </div>
+        </div>
+        <div class="row" style="margin-top: 5rem">
+            <div class="col-l-8 col-s-12">
+                <h2>¿Cuál es mi misión?</h2>
+                <p><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat iusto, sapiente. Doloribus et iure modi necessitatibus nulla? Accusantium asperiores culpa, dolores eum facilis minus nemo provident quaerat recusandae similique vel!</span><span>At eaque eius facere fugiat inventore nihil nostrum quae rerum sint, sunt. Ducimus eaque illum, maiores natus nihil rem reprehenderit sequi veritatis. Dolore, eligendi est hic mollitia nisi placeat unde?</span>
+                </p>
+            </div>
+            <div class="col-l-4 col-s-12 d-flex justify-content-center">
+                <script async src="//www.instagram.com/embed.js"></script>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>Servicios</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 2rem" th:each="product: ${products}" id="services">
+                <div class="card" style="width: 100%;">
+                    <img th:src="${product.imagen}"
+                         class="card-img-top" alt="..."/>
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${product.nombre}"/>
+                        <p class="card-text" th:text="${product.resumen}"/>
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                                th:data-bs-target="'#service' + ${product.id}">Leer más
+                        </button>
+                    </div>
+                </div>
+
+                <div class="modal fade" th:id="'service' + ${product.id}" tabindex="-1"
+                     th:aria-labelledby="${product.nombre}" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" th:id="${product.id} + 'Label'" th:text="${product.nombre}"/>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"/>
+                            </div>
+                            <div class="modal-body">
+                                <article style="text-align: justify" th:text="${product.descripcion}"/>
+                                <br/>
+                                <span><b>Precio:</b> <i>Q.<span th:text="${product.precio}"/></i> </span>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">OK
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="contactInfo">
+        <div class="row">
+            <div class="col-12">
+                <h1>Contacto</h1>
+            </div>
+            <div class="col-12">
+                <ul class="nav nav-tabs" id="myTab"
+                    role="tahttps://www.google.com/search?client=opera&hs=RN4&sxsrf=AOaemvK00U5HEFtFJgCh2ihmZQO7PJEtsA:1636600644052&q=iterate+through+array+mustache+spring%7D&spell=1&sa=X&ved=2ahUKEwjmhpzArI_0AhWuRzABHRJtCJ8QkeECKAB6BAgBEDQblist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+                                type="button" role="tab" aria-controls="home" aria-selected="true"><i
+                                class="bi bi-geo-alt"></i>&nbsp;Ubiación
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
+                                type="button" role="tab" aria-controls="profile" aria-selected="false"><i
+                                class="bi bi-telephone"></i>&nbsp;Contacto
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
+                                type="button" role="tab" aria-controls="contact" aria-selected="false"><i
+                                class="bi bi-info-circle"></i>&nbsp;Redes
+                        </button>
+                    </li>
+                </ul>
+                <div class="tab-content row" id="myTabContent">
+                    <div class="tab-pane fade col-sm-10 offset-sm-1 show active" id="home" role="tabpanel"
+                         aria-labelledby="home-tab">
+                        La clínica se ecuentra en la siguiente ubicación: <br/>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d3860.8507466521496!2d-90.5979908346179!3d14.607576880820565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e3!4m3!3m2!1d14.6077599!2d-90.59584319999999!4m5!1s0x8589a086c27bc959%3A0x67c7eb9c4548c263!2sSan%20Crist%C3%B3bal%201%2C%20Cdad.%20de%20Guatemala!3m2!1d14.6073835!2d-90.595736!5e0!3m2!1ses!2sgt!4v1636615922737!5m2!1ses!2sgt"
+                                width="100%" height="300px" style="border:0;" allowfullscreen="true"
+                                loading="lazy"></iframe>
+                    </div>
+                    <div class="tab-pane fade col-sm-10 offset-sm-1" id="profile" role="tabpanel"
+                         aria-labelledby="profile-tab">
+                        <form method="post" th:action="@{/sendMessage}" th:object="${sendMail}">
+                            <div class="row">
+                                <div class="col">
+                                    <label class="form-label" for="name">Nombre</label>
+                                    <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Nombre..">
+                                </div>
+                                <div class="col">
+                                    <label class="form-label" for="phone">Teléfono</label>
+                                    <input type="number" class="form-control" th:field="*{phone}" id="phone" placeholder="Teléfono..">
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 1rem">
+                                <div class="col">
+                                    <label class="form-label" for="mail">Correo electónico</label>
+                                    <input type="email" class="form-control" id="mail" th:field="*{email}" placeholder="Correo..">
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 1rem">
+                                <div class="col">
+                                    <label class="form-label" for="message">Mensaje</label>
+                                    <textarea class="form-control" rows="4" id="message" th:field="*{message}" placeholder="Mensaje.."></textarea>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 1rem">
+                                <div class="col-6 offset-3 text-center">
+                                    <button class="btn-outline-primary btn" type="submit">Enviar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade col-sm-10 offset-sm-1" id="contact" role="tabpanel"
+                         aria-labelledby="contact-tab">
+                        A continuación se muestran las vías de contacto disponibles
+                        <ul style="list-style: none">
+                            <li><b><i class="bi bi-telephone-fill"></i>&nbsp;Número de teléfono:</b>
+                                <a href="tel:51048862">(+502) 5104 - 8862</a>
+                            </li>
+                            <i class="bi bi-whatsapp"></i>&nbsp;WhatsApp:</b>
+                            <a href="https://wa.me/50251048862" target="_blank">(+502) 5104 - 8862</a>
+                            </li>
+                            <li><b><i class="bi bi-envelope"></i>&nbsp;Correo electrónico:</b>
+                                <a href="mailto:luisferth1997@gmail.com" target="_blank">luisferth1997@gmail.com</a>
+                            </li>
+                            <li><b><i class="bi bi-facebook"></i>&nbsp;Facebook:</b>
+                                <a href="https://www.facebook.com/luisfernando.tepe" target="_blank">Luis Fernando
+                                    Tepe</a></li>
+                            <li><b><i class="bi bi-instagram"></i>&nbsp;Instagram:</b>
+                                <a href="https://www.instagram.com/luis.tepe/" target="_blank">@luis.tepe</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section th:replace="common/footer::footerfragment"></section>
+</body>
+
+</html>
